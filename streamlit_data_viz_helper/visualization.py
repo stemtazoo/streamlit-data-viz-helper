@@ -1,5 +1,7 @@
 import plotly.express as px
 
+colors = px.colors.qualitative.Light24
+
 def create_scatter_plot(df, x, y, legend=None, title=None):
     """
     Create a scatter plot using Plotly Express.
@@ -15,7 +17,7 @@ def create_scatter_plot(df, x, y, legend=None, title=None):
         plotly.graph_objs._figure.Figure: The created scatter plot figure.
     """
     try:
-        fig = px.scatter(df, x=x, y=y, color=legend, title=title)
+        fig = px.scatter(df, x=x, y=y, color=legend, title=title, color_discrete_sequence=colors)
         return fig
     except Exception as e:
         raise ValueError(f"An error occurred while creating the scatter plot: {e}")
@@ -35,7 +37,7 @@ def create_bar_chart(df, x, y, legend=None, title=None):
         plotly.graph_objs._figure.Figure: The created bar chart figure.
     """
     try:
-        fig = px.bar(df, x=x, y=y, color=legend, title=title)
+        fig = px.bar(df, x=x, y=y, color=legend, title=title, color_discrete_sequence=colors)
         return fig
     except Exception as e:
         raise ValueError(f"An error occurred while creating the bar chart: {e}")
@@ -55,7 +57,7 @@ def create_line_chart(df, x, y, legend=None, title=None):
         plotly.graph_objs._figure.Figure: The created line chart figure.
     """
     try:
-        fig = px.line(df, x=x, y=y, color=legend, title=title)
+        fig = px.line(df, x=x, y=y, color=legend, title=title, color_discrete_sequence=colors)
         return fig
     except Exception as e:
         raise ValueError(f"An error occurred while creating the line chart: {e}")
@@ -73,7 +75,7 @@ def create_histogram(df, x, title=None):
         plotly.graph_objs._figure.Figure: The created histogram figure.
     """
     try:
-        fig = px.histogram(df, x=x, title=title)
+        fig = px.histogram(df, x=x, title=title, color_discrete_sequence=colors)
         return fig
     except Exception as e:
         raise ValueError(f"An error occurred while creating the histogram: {e}")

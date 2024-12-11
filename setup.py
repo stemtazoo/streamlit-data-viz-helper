@@ -2,11 +2,11 @@ from setuptools import setup, find_packages
 
 setup(
     name="streamlit_data_viz_helper",
-    version="0.1.0",
+    version="0.1.1",
     packages=find_packages(),
     install_requires=[
         "pandas",
-        "matplotlib",
+        "chardet",
         "streamlit",
         "plotly"
     ],
