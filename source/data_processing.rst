@@ -1,7 +1,10 @@
 Data Processing Module
 ======================
 
-.. automodule:: streamlit_data_viz_helper.data_processing
-   :members:
-   :undoc-members:
-   :show-inheritance:
+.. toctree::
+   :maxdepth: 2
+   :caption: Contents:
+
+   data_processing/load_csv_to_dataframe
+   data_processing/load_excel_to_dataframe
+   data_processing/load_all_files_in_folder

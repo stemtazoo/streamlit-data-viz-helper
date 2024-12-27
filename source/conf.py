@@ -3,13 +3,19 @@
 # For the full list of built-in configuration values, see the documentation:
 # https://www.sphinx-doc.org/en/master/usage/configuration.html
 
+import os
+import sys
+sys.path.insert(0, os.path.abspath('../../streamlit_data_viz_helper'))
+
+from streamlit_data_viz_helper import __version__
+
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
 project = 'Streamlit Data Viz Helper'
 copyright = '2024, stemtazoo'
 author = 'stemtazoo'
-release = '[0.1.3]'
+release = __version__
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration

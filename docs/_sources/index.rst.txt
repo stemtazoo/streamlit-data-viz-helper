@@ -8,6 +8,14 @@ Streamlit Data Viz Helper documentation
 
 Welcome to the Streamlit Data Viz Helper documentation!
 
+A Python library for simplifying data processing and visualization tasks.
+
+Key Features
+------------
+- Load and clean data
+- Create visualizations
+- Streamlit integration
+
 .. toctree::
    :maxdepth: 2
    :caption: Contents:

@@ -1,4 +1,6 @@
 import io
+import base64
+
 import streamlit as st
 import pandas as pd
 from pandas.api.types import (
@@ -28,6 +30,20 @@ def download_chart_html(fig, title):
         )
     except Exception as e:
         st.error(f"An error occurred while creating the download button: {e}")
+
+def download_csv_jis(df,title):
+    '''
+    Download data frames containing Japanese as CSV files.
+    
+    Args:
+        df : pandas dataframe
+        title : file name str
+     
+    '''
+    csv = df.to_csv(encoding='utf_8_sig')
+    b64 = base64.b64encode(csv.encode('utf-8-sig')).decode()
+    href = f'<a href="data:application/octet-stream;base64,{b64}" download= "{title}.csv">Download Link</a>'
+    st.markdown(f"Download data as CSV:  {href}", unsafe_allow_html=True)
 
 def filter_dataframe(df: pd.DataFrame) -> pd.DataFrame:
     """
@@ -122,3 +138,27 @@ def filter_dataframe(df: pd.DataFrame) -> pd.DataFrame:
                     df = df[df[column].astype(str).str.contains(user_text_input)]
     
     return df
+
+def show_df_with_expander(df, title='dataframe', label='See data!', expanded=False, icon=None):
+    """
+    Displays a DataFrame in a Streamlit expander and provides a CSV download option.
+
+    This function shows a Streamlit expander widget containing the given DataFrame.
+    It also includes a button to download the DataFrame as a CSV file with JIS encoding.
+
+    Args:
+        df (pd.DataFrame): The DataFrame to display.
+        title (str, optional): The filename (without extension) for the downloaded CSV file.
+                               Default is 'dataframe'.
+        label (str, optional): The label for the Streamlit expander. Default is 'See data!'.
+        expanded (bool, optional): Whether the expander is expanded by default. Default is False.
+        icon (str, optional): Icon for the expander widget (currently unused). Default is None.
+
+    Returns:
+        None: Displays the DataFrame and a download button in the Streamlit app.
+    """
+    with st.expander(label, expanded=expanded):
+        # Show the DataFrame
+        st.dataframe(df)
+        # Provide a download button for CSV
+        download_csv_jis(df, title=title)
